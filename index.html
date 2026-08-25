@@ -334,6 +334,29 @@
   .project-card-company {
     font-size: 12px;
     color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .project-card-desc {
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+
+  .project-card-flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .project-card-flow-tag {
+    font-size: 10.5px;
+    padding: 2px 8px;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 100px;
+    font-weight: 500;
   }
 
   .product-list {
@@ -389,28 +412,13 @@
     flex-direction: column;
   }
 
-  .slide-nav-bar {
+  /* Slide side nav buttons */
+  .slide-side-btn {
     position: absolute;
-    top: 56px; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 32px;
-    gap: 16px;
-  }
-
-  .slide-counter {
-    font-size: 12.5px;
-    color: var(--text-muted);
-    font-weight: 500;
-    letter-spacing: .06em;
-    min-width: 56px;
-    text-align: center;
-  }
-
-  .slide-nav-btn {
-    width: 38px; height: 38px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 200;
+    width: 44px; height: 44px;
     border-radius: 50%;
     border: 1px solid var(--border);
     background: var(--surface);
@@ -420,17 +428,36 @@
     justify-content: center;
     transition: var(--transition);
     color: var(--text-secondary);
-  }
-
-  .slide-nav-btn:hover:not(:disabled) {
-    border-color: var(--accent);
-    color: var(--accent);
     box-shadow: var(--shadow);
   }
+  .slide-side-btn:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: var(--shadow-hover);
+  }
+  .slide-side-btn:disabled { opacity: .3; cursor: not-allowed; }
+  #btn-prev { left: 20px; }
+  #btn-next { right: 20px; }
 
-  .slide-nav-btn:disabled {
-    opacity: .35;
-    cursor: not-allowed;
+  /* dots bar stays at top */
+  .slide-dots-bar {
+    position: absolute;
+    top: 56px; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    gap: 8px;
+  }
+
+  /* Slide viewport */
+  .slide-viewport {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    padding-top: 92px;
+    padding-bottom: 20px;
   }
 
   .slide-dots {
@@ -451,15 +478,6 @@
     background: var(--accent);
     width: 20px;
     border-radius: 3px;
-  }
-
-  /* Slide viewport */
-  .slide-viewport {
-    flex: 1;
-    overflow: hidden;
-    position: relative;
-    padding-top: 112px;
-    padding-bottom: 20px;
   }
 
   .slide-track {
@@ -722,6 +740,147 @@
     margin-top: 2px;
   }
 
+  /* ─── AI PROJECTS ───────────────────────────────────────────── */
+  .ai-project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .ai-project-item {
+    display: flex;
+    flex-direction: row;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  .ai-project-item:hover {
+    border-color: #C8D8D0;
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+  .ai-project-img-wrapper {
+    width: 220px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .ai-project-img {
+    width: 100%;
+    height: 100%;
+    min-height: 140px;
+    object-fit: cover;
+  }
+  .ai-project-content {
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+  }
+  .ai-project-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .ai-project-title::after {
+    content: '↗';
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+  }
+  .ai-project-item:hover .ai-project-title::after {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .ai-project-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .slide-ai-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .slide-ai-item {
+    display: flex;
+    flex-direction: row;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(.4,0,.2,1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .slide-ai-item:hover {
+    border-color: var(--accent-mid);
+    box-shadow: 0 12px 24px rgba(42,92,69,0.12);
+    transform: translateY(-4px);
+  }
+  .slide-ai-img-wrapper {
+    width: 260px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-right: 1px solid var(--border);
+  }
+  .slide-ai-img {
+    width: 100%;
+    height: 100%;
+    min-height: 140px;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(.4,0,.2,1);
+  }
+  .slide-ai-item:hover .slide-ai-img {
+    transform: scale(1.05);
+  }
+  .slide-ai-content {
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+  }
+  .slide-ai-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .slide-ai-name::after {
+    content: '↗';
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+  }
+  .slide-ai-item:hover .slide-ai-name::after {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .slide-ai-desc {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
   /* ─── PROGRESS BAR ──────────────────────────────────────────── */
   .slide-progress {
     height: 2px;
@@ -743,6 +902,16 @@
     #toggle-bar { padding: 0 16px; }
     .slide { padding: 0 20px; }
     .slide-project-grid { grid-template-columns: 1fr; }
+    
+    .ai-project-item, .slide-ai-item {
+      flex-direction: column;
+    }
+    .ai-project-img-wrapper, .slide-ai-img-wrapper {
+      width: 100%;
+      height: 160px;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
   }
 </style>
 </head>
@@ -901,12 +1070,26 @@
         <div class="project-card">
           <div class="project-card-icon">🛒</div>
           <div class="project-card-title">Master</div>
-          <div class="project-card-company">Rekind</div>
+          <div class="project-card-company">PT Rekayasa Industri</div>
+          <div class="project-card-desc">Aplikasi pengadaan terintegrasi — dari Engineering Requisition Plan, Project Control scheduling, SRM vendor management, pengisian BQ, proses tender, hingga penerbitan PO & Contract.</div>
+          <div class="project-card-flow">
+            <span class="project-card-flow-tag">Requisition Plan</span>
+            <span class="project-card-flow-tag">SRM</span>
+            <span class="project-card-flow-tag">BQ</span>
+            <span class="project-card-flow-tag">Tender</span>
+            <span class="project-card-flow-tag">PO / Contract</span>
+          </div>
         </div>
         <div class="project-card">
           <div class="project-card-icon">🏗️</div>
           <div class="project-card-title">ISC Pro</div>
-          <div class="project-card-company">Rekind</div>
+          <div class="project-card-company">PT Rekayasa Industri</div>
+          <div class="project-card-desc">Lanjutan dari Master — mengelola konstruksi setelah kontrak ditandatangani. Tim lapangan mengisi daily activity report untuk mendapatkan progress construction secara real-time.</div>
+          <div class="project-card-flow">
+            <span class="project-card-flow-tag">Daily Activity</span>
+            <span class="project-card-flow-tag">Progress Construction</span>
+            <span class="project-card-flow-tag">Field Report</span>
+          </div>
         </div>
       </div>
     </section>
@@ -942,6 +1125,40 @@
       </div>
     </section>
 
+    <!-- AI Projects -->
+    <section class="cv-section">
+      <div class="cv-section-header">
+        <span class="cv-section-label">AI Projects</span>
+        <div class="cv-section-line"></div>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <a href="https://github.com/stwnakbr" target="_blank" class="cv-contact-pill" style="display:inline-flex; width:auto;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          github.com/stwnakbr
+        </a>
+      </div>
+      <div class="ai-project-list">
+        <a href="https://dashboardtb.rekayasa.co.id/proker-tb/" target="_blank" class="ai-project-item">
+          <div class="ai-project-img-wrapper">
+            <img src="images/proker_tracker_dashboard.png" alt="Program Kerja Tracker" class="ai-project-img" />
+          </div>
+          <div class="ai-project-content">
+            <div class="ai-project-title">Program Kerja Tracker</div>
+            <p class="ai-project-desc">Tools for IT Project Managers to automatically generate documentation for every milestone, featuring Gantt chart timelines and an S-curve dashboard.</p>
+          </div>
+        </a>
+        <a href="https://rekinnovation.rekayasa.co.id/" target="_blank" class="ai-project-item">
+          <div class="ai-project-img-wrapper">
+            <img src="images/rekinnovation_dashboard.png" alt="Rekinnovation" class="ai-project-img" />
+          </div>
+          <div class="ai-project-content">
+            <div class="ai-project-title">Rekinnovation</div>
+            <p class="ai-project-desc">A platform for registering innovation ideas at Rekind, displaying real-time assessments and a gallery of posters for all candidates/participants.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
   </div><!-- /cv-body -->
 </div><!-- /cv-mode -->
 
@@ -951,16 +1168,18 @@
 ═══════════════════════════════════════════ -->
 <div id="slide-mode">
 
-  <!-- Navigation -->
-  <div class="slide-nav-bar">
-    <button class="slide-nav-btn" id="btn-prev" onclick="changeSlide(-1)" disabled>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>
-    </button>
+  <!-- Nav: dots bar at top -->
+  <div class="slide-dots-bar">
     <div class="slide-dots" id="slide-dots"></div>
-    <button class="slide-nav-btn" id="btn-next" onclick="changeSlide(1)">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18l6-6-6-6"/></svg>
-    </button>
   </div>
+
+  <!-- Nav: side buttons -->
+  <button class="slide-side-btn" id="btn-prev" onclick="changeSlide(-1)" disabled>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button class="slide-side-btn" id="btn-next" onclick="changeSlide(1)">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
 
   <!-- Slide Track -->
   <div class="slide-viewport">
@@ -1104,12 +1323,24 @@
             <div class="slide-project-card">
               <div class="slide-project-num">04 · Rekind</div>
               <div class="slide-project-name">🛒 Master</div>
-              <div class="slide-project-company">PT Rekayasa Industri</div>
+              <div class="slide-project-company">Aplikasi pengadaan terintegrasi dari Engineering Req. Plan, SRM vendor, BQ, Tender, hingga PO &amp; Contract.</div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;">
+                <span style="font-size:10px;padding:2px 7px;background:var(--accent-light);color:var(--accent);border-radius:100px;font-weight:500;">Req. Plan</span>
+                <span style="font-size:10px;padding:2px 7px;background:var(--accent-light);color:var(--accent);border-radius:100px;font-weight:500;">SRM</span>
+                <span style="font-size:10px;padding:2px 7px;background:var(--accent-light);color:var(--accent);border-radius:100px;font-weight:500;">BQ</span>
+                <span style="font-size:10px;padding:2px 7px;background:var(--accent-light);color:var(--accent);border-radius:100px;font-weight:500;">Tender</span>
+                <span style="font-size:10px;padding:2px 7px;background:var(--accent-light);color:var(--accent);border-radius:100px;font-weight:500;">PO/Contract</span>
+              </div>
             </div>
             <div class="slide-project-card">
               <div class="slide-project-num">05 · Rekind</div>
               <div class="slide-project-name">🏗️ ISC Pro</div>
-              <div class="slide-project-company">PT Rekayasa Industri</div>
+              <div class="slide-project-company">Lanjutan Master — manajemen konstruksi pasca kontrak. Tim lapangan isi daily activity untuk progress construction real-time.</div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;">
+                <span style="font-size:10px;padding:2px 7px;background:var(--accent-light);color:var(--accent);border-radius:100px;font-weight:500;">Daily Activity</span>
+                <span style="font-size:10px;padding:2px 7px;background:var(--accent-light);color:var(--accent);border-radius:100px;font-weight:500;">Progress</span>
+                <span style="font-size:10px;padding:2px 7px;background:var(--accent-light);color:var(--accent);border-radius:100px;font-weight:500;">Field Report</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1146,6 +1377,64 @@
         </div>
       </div>
 
+      <!-- Slide 8: AI Projects -->
+      <div class="slide" id="slide-8">
+        <div class="slide-inner">
+          <h2 class="slide-products-title">AI Projects</h2>
+          <p class="slide-products-sub">
+            <a href="https://github.com/stwnakbr" target="_blank" style="color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              github.com/stwnakbr
+            </a>
+          </p>
+          <div class="slide-ai-list">
+            <a href="https://dashboardtb.rekayasa.co.id/proker-tb/" target="_blank" class="slide-ai-item">
+              <div class="slide-ai-img-wrapper">
+                <img src="images/proker_tracker_dashboard.png" alt="Proker Tracker" class="slide-ai-img" />
+              </div>
+              <div class="slide-ai-content">
+                <div class="slide-ai-name">Program Kerja Tracker</div>
+                <div class="slide-ai-desc">Auto documentation, Gantt chart, S-curve dashboard.</div>
+              </div>
+            </a>
+            <a href="https://rekinnovation.rekayasa.co.id/" target="_blank" class="slide-ai-item">
+              <div class="slide-ai-img-wrapper">
+                <img src="images/rekinnovation_dashboard.png" alt="Rekinnovation" class="slide-ai-img" />
+              </div>
+              <div class="slide-ai-content">
+                <div class="slide-ai-name">Rekinnovation</div>
+                <div class="slide-ai-desc">Innovation ideas registration & realtime assessment.</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 9: Thank You -->
+      <div class="slide" id="slide-9">
+        <div class="slide-inner" style="text-align: center;">
+          <p style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">Open to Opportunities</p>
+          <h1 class="slide-intro-name">Let's <em>Work Together</em></h1>
+          <p class="slide-intro-bio" style="margin: 0 auto; border: none; padding: 0;">
+            I'm actively looking for my next challenge as a <strong>Project Manager</strong>, <strong>Business Analyst</strong>, or <strong>Product Owner</strong>. If you're building something great, I'd love to be part of it.
+          </p>
+          <div style="margin-top: 32px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+            <a class="cv-contact-pill" href="tel:+6281288050084">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.61 12.1 19.79 19.79 0 0 1 1.56 3.49 2 2 0 0 1 3.53 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              +62 812 8805 0084
+            </a>
+            <a class="cv-contact-pill" href="mailto:stwnakbr710@gmail.com">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              stwnakbr710@gmail.com
+            </a>
+            <a class="cv-contact-pill" href="https://www.linkedin.com/in/stwnakbr" target="_blank">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              linkedin.com/in/stwnakbr
+            </a>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /slide-track -->
 
     <!-- Progress bar -->
@@ -1177,7 +1466,7 @@
   }
 
   /* ─── SLIDE ENGINE ─────────────────────── */
-  const TOTAL_SLIDES = 8;
+  const TOTAL_SLIDES = 10;
   let currentSlide = 0;
 
   function buildDots() {
@@ -1228,7 +1517,7 @@
 
   // Init
   buildDots();
-  goToSlide(0);
+  setMode('cv');
 </script>
 </body>
 </html>
